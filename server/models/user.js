@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_I = 10; // needed for decrypting and default is 10
 
 //creating the schema
 const userSchema = mongoose.Schema({
@@ -39,7 +41,29 @@ const userSchema = mongoose.Schema({
         type:String
     }
 
-})
+});
+
+userSchema.pre('save', function(next){
+    var user = this; //this refers to userSchema
+
+    if (user.isModified('password')) {
+    //encrypting password
+        bcrypt.genSalt(SALT_I, function(err, salt){
+            if(err) return next(err); // moves forward to the next in line
+
+            
+                bcrypt.hash(user.password, salt, function (err, hash) {
+                    if (err) return next(err);
+                    user.password = hash;
+                    next();
+                });
+            })
+        }else {
+            next();
+        }
+       
+    });
+
 
 //creating a model out of this schema
 const User = mongoose.model('User', userSchema);
