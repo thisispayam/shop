@@ -71,6 +71,20 @@ app.post('/api/users/login',(req,res)=>{
     })
 })
 
+//users gets logged out only if they are logged in - check auth
+app.get('/api/user/logout',auth,(req,res)=>{
+    //going to db
+    User.findOneAndUpdate(
+        { _id:req.user._id },
+        { token: '' },
+        (err,doc)=>{
+            if(err) return res.json({success:false,err});
+            return res.status(200).send({
+                success: true
+            })
+        }
+    )
+})
 
 const port = process.env.PORT || 3002;
 
