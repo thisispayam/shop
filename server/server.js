@@ -83,7 +83,32 @@ app.get('/api/product/sizes',(req,res)=>{
 //             PRODUCTS
 //=================================
 
+//fetching products by id
+/// /api/product/article?id=HSHSHSKSK,JSJSJSJS,SDSDHHSHDS,JSJJSDJ&type=single
+app.get('/api/product/articles_by_id',(req,res)=>{
+    let type = req.query.type; //whatever we have inside &type= / url gets encoded by bodyparser on top
+    let items = req.query.id; // content inside ?id=
 
+    if(type === "array"){
+        let ids = req.query.id.split(','); // spliting the ids
+        items = []; // we don't want to return ["HSHSHSKSK","JSJSJSJS", etc]/ we need mongoose objects
+        items = ids.map(item=>{
+            return mongoose.Types.ObjectId(item) // converting the ids to objectId from mongoose 
+        })
+    }
+
+    //find a product(s) id check for their 'ref' inside db and return
+    Product.
+    find({ '_id':{$in:items}}).
+    populate('brand').
+    populate('size').
+    exec((err,docs)=>{
+        return res.status(200).send(docs)
+    })
+});
+
+
+//adding product
 app.get('/api/product/articles',auth,admin,(req,res)=>{
     const product = new Product(req.body);
 
