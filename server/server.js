@@ -21,6 +21,7 @@ app.use(cookieParser());
 const {User} = require('./models/user');
 const {Brand} = require('./models/brand');
 const {Size} = require('./models/size');
+const {Product} = require('./models/product');
 
 
 //=========================================
@@ -77,6 +78,25 @@ app.get('/api/product/sizes',(req,res)=>{
         res.status(200).send(sizes)
     })
 })
+
+//=================================
+//             PRODUCTS
+//=================================
+
+
+app.get('/api/product/articles',auth,admin,(req,res)=>{
+    const product = new Product(req.body);
+
+    product.save((err,doc) => {
+        if(err) return res.json({success:false, err});
+        res.status(200).json({
+            success:true,
+            article: doc
+        })
+    })
+})
+
+
 
 //=========================================
 //          USERS
