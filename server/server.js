@@ -83,6 +83,35 @@ app.get('/api/product/sizes',(req,res)=>{
 //             PRODUCTS
 //=================================
 
+//#3
+// BY ARRIVAL - latest listings - latest 4
+// /articles?sortBy=createdAt&order=desc&limit=4
+
+// BY SELL - top sells - top 5
+// /articles?sortBy=sold&order=desc&limit=100&skip=5
+
+//note: createdAt and sold exist in the db
+//note: &limit=100&skip=5 : skip=5 means skip the first 5 and limit the 95 left
+
+app.get('/api/product/articles',(req,res)=>{
+
+    let order = req.query.order ? req.query.order : 'asc'; // if it's available use it if not order by asc
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id"; // if it's available use it if not order by id
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100;
+
+    Product.
+    find().
+    populate('brand').
+    populate('size').
+    sort([[sortBy,order]]).
+    limit(limit).
+    exec((err,articles)=>{
+        if(err) return res.status(400).send(err);
+        res.send(articles)
+    })
+})
+
+//#2
 //fetching products by id
 /// /api/product/article?id=HSHSHSKSK,JSJSJSJS,SDSDHHSHDS,JSJJSDJ&type=single
 app.get('/api/product/articles_by_id',(req,res)=>{
@@ -96,7 +125,7 @@ app.get('/api/product/articles_by_id',(req,res)=>{
             return mongoose.Types.ObjectId(item) // converting the ids to objectId from mongoose 
         })
     }
-
+//#1
     //find a product(s) id check for their 'ref' inside db and return
     Product.
     find({ '_id':{$in:items}}).
