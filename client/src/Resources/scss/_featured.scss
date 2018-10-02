@@ -1,0 +1,71 @@
+
+/*============================
+        FEATURED IMAGE
+==============================*/
+
+.featured_container {
+    .featured_image {
+        position:relative;
+        background-size: cover !important;
+        background-position: center left !important;
+    }
+     .featured_action {
+        position: absolute;
+        top: 45%;
+        left: 8%;
+        .tag {
+            background: #82828287;
+            color: #ffffff;
+            padding: 0px 20px;
+            text-transform: uppercase;
+            display: table;
+            &.title {
+                font-size: 70px;
+                font-weight: 700;
+            }
+            &.low_title {
+                font-size: 50px;
+                font-weight: 300;
+                margin-top: 10px;
+            }
+
+        }
+    }
+} 
+
+
+/*============================
+        FEATURED PROMOTION
+==============================*/
+
+.home_promotion {
+    .home_promotion_img {
+        height: 400px;
+        background-size: cover !important;
+        background-position: top center !important;
+        padding: 73px;
+        box-sizing: border-box;
+    }
+     .tag {
+        background: #82828287;
+        color: #ffffff;
+        padding: 0px 20px;
+        text-transform: uppercase;
+        display: table;
+         &.title {
+            font-size: 70px;
+            font-weight: 700;
+            margin: 10px auto;
+        }
+        &.low_title {
+            font-size: 50px;
+            font-weight: 300;
+            margin-top: 10px;
+            margin: 0 auto;
+        }
+    }
+    .my_link a {
+        margin: 10px auto;
+    }
+}
+
