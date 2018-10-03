@@ -14,43 +14,43 @@ const Footer = () => {
                 <div className="wrapper">
                     <div className="left">
                         <h2>Contact info </h2>
-                        <div clasName="business_nfo">
-                            <div clasName="tag">
-                                <FontAwesomeIcon 
+                        <div className="business_nfo">
+                        <div className="tag">
+                                <FontAwesomeIcon
                                     icon={faCompass}
                                     className="icon"
                                 />
-                                <div clasName="nfo">
+                                <div className="nfo">
                                     <div>Address</div>
                                     <div>123 Test street</div>
                                 </div>
                             </div>
-                            <div clasName="tag">
+                            <div className="tag">
                                 <FontAwesomeIcon
                                     icon={faPhone}
                                     className="icon"
                                 />
-                                <div clasName="nfo">
+                                <div className="nfo">
                                     <div>Phone</div>
                                     <div>123 345 6789</div>
                                 </div>
                             </div>
-                            <div clasName="tag">
+                            <div className="tag">
                                 <FontAwesomeIcon
                                     icon={faClock}
                                     className="icon"
                                 />
-                                <div clasName="nfo">
+                                <div className="nfo">
                                     <div>Working hours</div>
                                     <div>Mon-Sun / 9am - 5pm</div>
                                 </div>
                             </div>
-                            <div clasName="tag">
+                            <div className="tag">
                                 <FontAwesomeIcon
                                     icon={faEnvelope}
                                     className="icon"
                                 />
-                                <div clasName="nfo">
+                                <div className="nfo">
                                     <div>Email</div>
                                     <div>info@shop.com</div>
                                 </div>
